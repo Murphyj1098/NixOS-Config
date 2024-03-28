@@ -69,9 +69,9 @@
       }
 
       general {
-          gaps_in = 5
-          gaps_out = 20
-          border_size = 2
+          gaps_in = 7
+          gaps_out = 7
+          border_size = 4
           col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
           col.inactive_border = rgba(595959aa)
 
@@ -81,18 +81,15 @@
       }
 
       decoration {
-          rounding = 10
-          
+          rounding = 8
           blur {
               enabled = true
-              size = 3
-              passes = 1
+              size = 5
+              passes = 2
+              ignore_opacity = true
+              contrast = 1.17
+              brightness = 0.8
           }
-
-          drop_shadow = yes
-          shadow_range = 4
-          shadow_render_power = 3
-          col.shadow = rgba(1a1a1aee)
       }
 
       animations {
@@ -202,7 +199,7 @@
         margin = "7 7 3 7";
         spacing = 2;
 
-        modules-left = [];
+        modules-left = ["idle_inhibitor"];
         modules-center = [];
         modules-right = [ "wireplumber" "battery" "clock" ];
 
@@ -234,5 +231,36 @@
         };
       };
     };
+    style = ''
+      * {
+        font-family: JetBrains Mono;
+        font-size: 16px;
+      }
+
+      window#waybar {
+        background: #16191C;
+        opacity: 0.75;
+        border-radius: 8px;
+        color: #AAB2BF;
+      }
+      #workspaces button {
+        padding: 0 7px;
+      }
+    '';
+  };
+
+  programs.rofi = {
+    enable = true;
+    package = pkgs.rofi-wayland;
+    theme = "purple";
+  };
+
+  services.mako = {
+    enable = true;
+    package = pkgs.mako;
+    extraConfig = ''
+    [app-name="Soptify]
+    invisible=1
+    '';
   };
 }

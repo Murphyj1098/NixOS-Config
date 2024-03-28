@@ -25,16 +25,16 @@
 
     # Window Manager + Addons
     libnotify     # for mako
-    mako          # Notifs
     swww          # Wallpaper
-    rofi-wayland  # Launcher
     pavucontrol   # Volume Menu
 
     # Apps
     firefox
-    vscode
+    vscode-fhs
     spotify
     kitty
+    discord
+    godot_4
 
     # Other
     python3Full

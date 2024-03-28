@@ -25,6 +25,7 @@ in
     initExtra = ''
     source ~/.nix-profile/share/git/contrib/completion/git-prompt.sh
     export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \[\033[01;91m\]$(__git_ps1 "(%s)")\n\[\033[38;5;208m\]\$\[\033[00m\] '
+    export GIT_PS1_SHOWDIRTYSTATE=1
     '';
   };
 }
