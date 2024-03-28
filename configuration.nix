@@ -1,4 +1,3 @@
-
 { lib, pkgs, systemSettings, userSettings, ... }:
 
 {
@@ -6,6 +5,7 @@
     [
       ./system/hardware-configuration.nix
       ./system/app/nano.nix
+      ./system/hardware/cifs-mount.nix
       ./system/hardware/network.nix
       ./system/hardware/bluetooth.nix
       ./system/wm/wayland.nix
