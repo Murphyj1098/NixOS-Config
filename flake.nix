@@ -1,7 +1,7 @@
 {
   description = "jrmurphy NixOS & Home Manager Configuration";
 
-  outputs = {self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{self, nixpkgs, home-manager, stylix, ... }:
     let
       # ----- System Settings ----- #
       systemSettings = {
@@ -18,9 +18,10 @@
         wm = "hyprland";
         browser = "firefox";
         term = "kitty";
-        font = "MesloLGS NF";
-        fontPkg = pkgs.meslo-lgs-nf;
+        font = "JetBrains Mono";
+        fontPkg = pkgs.jetbrains-mono;
         editor = "nano";
+        theme = "dracula";
       };
 
       pkgs = import nixpkgs {
@@ -42,6 +43,7 @@
           extraSpecialArgs = {
             inherit systemSettings;
             inherit userSettings;
+            inherit (inputs) stylix;
           };
         };
       };
@@ -53,6 +55,7 @@
           specialArgs = {
             inherit systemSettings;
             inherit userSettings;
+            inherit (inputs) stylix;
           };
         };
       };
@@ -64,6 +67,8 @@
 
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    stylix.url = "github:danth/stylix/release-23.11";
   };
 
 }

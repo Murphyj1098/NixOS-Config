@@ -9,6 +9,7 @@
       ./system/hardware/network.nix
       ./system/hardware/bluetooth.nix
       ./system/wm/wayland.nix
+      ./system/style/stylix.nix
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

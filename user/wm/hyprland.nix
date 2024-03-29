@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, userSettings, ... }:
 
 {
     wayland.windowManager.hyprland = {
@@ -43,10 +43,7 @@
 
 
       ## Workspaces ##
-      # workspace = 1, monitor:desc:Sharp Corporation 0x1548, default:true
-      # workspace = 1, monitor:desc:Ancor Communications Inc ASUS VS239 J7LMTF006741, default:true
-      # workspace = 1, montorp:desc:Acer Technologies XV272U 0x11614F92, default:true
-      # workspace = 1, monitor:desc:Dell Inc. DELL 2007WFP HF73064L41FL, default:true
+
 
       ## Environment Vars ##
       env = XCURSOR_SIZE,24
@@ -72,11 +69,11 @@
           gaps_in = 7
           gaps_out = 7
           border_size = 4
-          col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-          col.inactive_border = rgba(595959aa)
+          col.active_border = 0xffea51b2
+
+          col.inactive_border = 0x33282936
 
           layout = dwindle
-
           allow_tearing = false
       }
 
@@ -199,12 +196,12 @@
         margin = "7 7 3 7";
         spacing = 2;
 
-        modules-left = ["idle_inhibitor"];
-        modules-center = [];
+        modules-left = [ "idle_inhibitor" ];
+        modules-center = [ "hyprland/workspaces" ];
         modules-right = [ "wireplumber" "battery" "clock" ];
 
         wireplumber = {
-          "format" = "{volume}%, {icon}";
+          "format" = " {icon} {volume}% ";
           "format-muted" = "🔇";
           "max-volume" = 100;
           "scroll-step" = 1.0;
@@ -214,7 +211,7 @@
 
         clock = {
           "interval" = 1;
-          "format" = "{:%a %Y-%m-%d %I:%M:%S %p}";
+          "format" = " {:%a %Y-%m-%d %I:%M:%S %p} ";
           "timezone" = "America/New_York";
         };
 
@@ -224,7 +221,7 @@
             "warning" = 30;
             "critical" = 15;
           };
-          "format" = "{capacity}% {icon}";
+          "format" = " {icon} {capacity}% ";
           "format-charging" = "{capacity}% ";
           "format-plugged" = "{capacity}% ";
           "format-icons" = [ "" "" "" "" "" ];
@@ -233,26 +230,57 @@
     };
     style = ''
       * {
-        font-family: JetBrains Mono;
+        font-family: '' + userSettings.font + '', "Font Awesome 6 Free";
         font-size: 16px;
       }
 
       window#waybar {
-        background: #16191C;
-        opacity: 0.75;
+          background-color: #282936;
+          opacity: 0.75;
+          border-radius: 8px;
+          color: #f7f7fb;
+          transition-property: background-color;
+          transition-duration: .2s;
+      }
+
+      window > box {
         border-radius: 8px;
-        color: #AAB2BF;
+        opacity: 0.95;
       }
+
       #workspaces button {
-        padding: 0 7px;
+          padding: 0 7px;
+          background-color: transparent;
+          color: #62d6e8;
       }
+
+      #workspaces button:hover {
+          color: #f7f7fb;
+      }
+
+      #workspaces button.active {
+          color: #ea51b2;
+      }
+
+      #workspaces button.focused {
+          color: #00f769;
+      }
+
+      #workspaces button.visible {
+          color: #e9e9f4;
+      }
+
+      #workspaces button.urgent {
+          color: #b45bcf;
+      }
+
+
     '';
   };
 
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    theme = "purple";
   };
 
   services.mako = {

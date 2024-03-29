@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, stylix, userSettings, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -9,10 +9,12 @@
   programs.home-manager.enable = true;
 
   imports = [
+    stylix.homeManagerModules.stylix
     ./user/app/git/git.nix
     ./user/app/terminal/kitty.nix
     ./user/wm/hyprland.nix
     ./user/shell/sh.nix
+    ./user/style/stylix.nix
   ];
 
   home.packages = with pkgs; [
