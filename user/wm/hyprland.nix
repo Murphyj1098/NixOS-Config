@@ -1,4 +1,4 @@
-{ pkgs, userSettings, ... }:
+{ pkgs, config, userSettings, ... }:
 
 {
     wayland.windowManager.hyprland = {
@@ -200,6 +200,14 @@
         modules-center = [ "hyprland/workspaces" ];
         modules-right = [ "wireplumber" "battery" "clock" ];
 
+        "idle_inhibitor" = {
+          format = " {icon}";
+          format-icons = {
+            activated = "󰅶";
+            deactivated = "󰾪";
+          };
+        };
+
         wireplumber = {
           "format" = " {icon} {volume}% ";
           "format-muted" = "🔇";
@@ -274,6 +282,42 @@
           color: #b45bcf;
       }
 
+      #clock {
+          color: #'' + config.lib.stylix.colors.base0D + '';
+      }
+
+      #battery {
+          color: #'' + config.lib.stylix.colors.base0B + '';
+      }
+
+      #battery.charging, #battery.plugged {
+          color: #'' + config.lib.stylix.colors.base0C + '';
+      }
+
+      @keyframes blink {
+          to {
+              background-color: #'' + config.lib.stylix.colors.base07 + '';
+              color: #'' + config.lib.stylix.colors.base00 + '';
+          }
+      }
+
+      #battery.critical:not(.charging) {
+          background-color: #'' + config.lib.stylix.colors.base08 + '';
+          color: #'' + config.lib.stylix.colors.base07 + '';
+          animation-name: blink;
+          animation-duration: 0.5s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
+
+      #idle_inhibitor {
+          color: #'' + config.lib.stylix.colors.base04 + '';
+      }
+
+      #idle_inhibitor.activated {
+          color: #'' + config.lib.stylix.colors.base0F + '';
+      }
 
     '';
   };

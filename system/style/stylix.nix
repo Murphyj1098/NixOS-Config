@@ -10,18 +10,23 @@ in
   stylix.autoEnable = false;
   stylix.polarity = themePolarity;
   stylix.base16Scheme = ./. + themePath;
+
   stylix.fonts = {
     monospace = {
       name = userSettings.font;
       package = userSettings.fontPkg;
     };
-    serif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
-    };
-    sansSerif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
-    };
+    # serif = {
+    #   name = userSettings.font;
+    #   package = userSettings.fontPkg;
+    # };
+    # sansSerif = {
+    #   name = userSettings.font;
+    #   package = userSettings.fontPkg;
+    # };
+  };
+
+  environment.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "qt5ct";
   };
 }

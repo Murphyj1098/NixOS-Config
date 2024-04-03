@@ -14,14 +14,14 @@ in
       name = userSettings.font;
       package = userSettings.fontPkg;
     };
-    serif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
-    };
-    sansSerif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
-    };
+    # serif = {
+    #   name = userSettings.font;
+    #   package = userSettings.fontPkg;
+    # };
+    # sansSerif = {
+    #   name = userSettings.font;
+    #   package = userSettings.fontPkg;
+    # };
   };
 
   stylix.targets.kitty.enable = true;
@@ -40,6 +40,5 @@ in
   qt = {
     enable = true;
     style.package = pkgs.libsForQt5.breeze-qt5;
-    style.name = "breeze-dark";
   };
 }
