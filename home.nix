@@ -20,14 +20,14 @@
   home.packages = with pkgs; [
 
     # CLI Utils/Toys
-    neofetch
-    hyfetch
+    fastfetch
     tree
+    bat
     (pkgs.callPackage ./user/pkgs/pokemon-colorscripts.nix { })
 
     # Window Manager + Addons
     libnotify     # for mako
-    swww          # Wallpaper
+    swww          # Wallpaper (swap this out for hyprpaper?)
     pavucontrol   # Volume Menu
 
     # Apps
